@@ -20,8 +20,7 @@ struct ModalView: View {
         "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"
     ]
     
-    //    @Binding var showModal : Bool
-    @Binding var selectedPrefecture: String
+    @Binding var selectedPrefecture: String?
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -29,25 +28,26 @@ struct ModalView: View {
             
             List {
                 ForEach(prefectures, id: \.self) { prefecture in
-                    Text(prefecture)
+                    HStack{
+                        Text(prefecture)
+                        //空白部分にもタップ判定を加えるために、「Spacer()」と「.contentShape(Rectangle())」を記載。
+                        Spacer()
+                    }
+                        .contentShape(Rectangle())
                         .onTapGesture {
                             self.selectedPrefecture = prefecture
                             presentationMode.wrappedValue.dismiss()
                         }
                 }
             }
+            .listStyle(PlainListStyle())
             .navigationTitle("都道府県")
-            //.navigationTitle("都道府県")だけだと、h1サイズの大きさで左斜め下に表示される。(この２行を１行で書く方法もありそう。。)
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.visible, for: .navigationBar)
-            //戻るボタン生成および位置を指定。leading->左、trailing->右
+            //戻るボタン生成および位置を指定。leading->左、trailing->右。
             .navigationBarItems(trailing: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
         }
     }
 }
-
-//#Preview {
-//    ModalView(showModal: <#T##Binding<Bool>#>)
-//}
