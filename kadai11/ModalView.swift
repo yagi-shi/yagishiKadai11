@@ -33,11 +33,11 @@ struct ModalView: View {
                         //空白部分にもタップ判定を加えるために、「Spacer()」と「.contentShape(Rectangle())」を記載。
                         Spacer()
                     }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            self.selectedPrefecture = prefecture
-                            presentationMode.wrappedValue.dismiss()
-                        }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        self.selectedPrefecture = prefecture
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
             }
             .listStyle(PlainListStyle())

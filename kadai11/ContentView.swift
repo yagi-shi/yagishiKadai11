@@ -1,16 +1,9 @@
-//
-//  ContentView.swift
-//  kadai11
-//
-//  Created by 八木佑樹 on 2024/06/15.
-//
 
 import SwiftUI
 
 struct ContentView: View {
     @State var prefecture: String?
     @State var isShowModal = false
-//    @State var selectedPrefecture : String?
     
     var body: some View {
         //横並びで等間隔に表示
@@ -20,14 +13,13 @@ struct ContentView: View {
             Button("変更"){
                 isShowModal = true
             }
-            //isPresented->表示したいモーダル、onDismiss->モーダルが閉じられた時の挙動定義
+            //isPresented->表示したいモーダルを指定し、trueの状態に。（モーダルが閉じられる際に、自動的にfalseに。）
             .fullScreenCover(isPresented: $isShowModal){
+                //ModalView側のselectedPrefectureとContentView側のprefecture間でデータを共有
                 ModalView(selectedPrefecture: $prefecture)
             }
         }
-        
         VStack() {
-            //下記コードを置いた位置に、スペースを作るイメージ
             Spacer()
         }
     }
