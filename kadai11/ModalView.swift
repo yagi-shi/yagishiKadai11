@@ -1,9 +1,3 @@
-//
-//  ModalView.swift
-//  kadai11
-//
-//  Created by 八木佑樹 on 2024/06/20.
-//
 
 import SwiftUI
 
